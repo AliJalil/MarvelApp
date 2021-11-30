@@ -3,7 +3,7 @@ package com.example.marvelapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CharecterDto(
+data class CharacterDto(
     @SerializedName("comics")
     var comics: Comics? = null,
     @SerializedName("description")

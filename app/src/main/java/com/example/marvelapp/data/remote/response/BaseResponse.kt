@@ -17,6 +17,6 @@ data class BaseResponse<T>(
     @SerializedName("status")
     var status: String?,
     @SerializedName("data")
-    val data: List<T>?,
+    val data: DataContainer<T>? = null,
 
 )

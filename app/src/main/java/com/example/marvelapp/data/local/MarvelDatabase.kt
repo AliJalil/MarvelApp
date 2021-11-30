@@ -10,7 +10,7 @@ import com.example.marvelapp.data.local.entity.CharacterEntity
 
 @Database(entities = [CharacterEntity::class], version = 1)
 abstract class MarvelDatabase : RoomDatabase() {
-    abstract fun reminderDao(): MarvelCharacterDao
+    abstract fun marvelDao(): MarvelCharacterDao
 
     companion object {
 

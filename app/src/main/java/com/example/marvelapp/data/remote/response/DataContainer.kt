@@ -3,7 +3,7 @@ package com.example.marvelapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DataContainer(
+data class DataContainer<T>(
     @SerializedName("count")
     var count: Int?,
     @SerializedName("limit")
@@ -11,7 +11,7 @@ data class DataContainer(
     @SerializedName("offset")
     var offset: Int?,
     @SerializedName("results")
-    var results: List<Any>?,
+    var items: List<T>?,
     @SerializedName("total")
     var total: Int?
 )
