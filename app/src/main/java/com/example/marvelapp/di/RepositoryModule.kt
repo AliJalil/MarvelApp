@@ -14,11 +14,11 @@ import dagger.hilt.components.SingletonComponent
 object RepositoryModule {
 
     @Provides
-    fun provideRepository(apiServices: MarvelApiServices): MarvelRepository =
-        MarvelRepositoryImpl(apiService = apiServices)
+    fun provideRepository(apiServices: MarvelApiServices,characterMapper: CharacterMapper): MarvelRepository =
+        MarvelRepositoryImpl(apiService = apiServices,characterMapper)
 
 
-//    @Provides
-//    fun provideCharacterMapper() : CharacterMapper = CharacterMapper()
-//
+    @Provides
+    fun provideCharacterMapper() : CharacterMapper = CharacterMapper()
+
 }

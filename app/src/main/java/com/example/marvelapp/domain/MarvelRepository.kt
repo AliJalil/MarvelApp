@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface MarvelRepository {
 
-     fun getCharacters() : Flow<Resources<BaseResponse<Character>?>>
+     fun getCharacters() : Flow<Resources<List<Character>?>>
 //    suspend fun refreshCharacters()
 }

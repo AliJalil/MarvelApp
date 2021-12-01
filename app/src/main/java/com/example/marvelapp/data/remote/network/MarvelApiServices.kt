@@ -1,6 +1,7 @@
 package com.example.marvelapp.data.remote.network
 
 import com.example.marvelapp.data.remote.response.BaseResponse
+import com.example.marvelapp.data.remote.response.CharacterDto
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -15,43 +16,5 @@ interface MarvelApiServices {
 //    fun getCharecters(): Response<BaseResponse<CharacterDto>>
 
     @GET("characters")
-    suspend fun getCharacters() : Response<BaseResponse<Character>>
-
-
-
+    suspend fun getCharacters() : Response<BaseResponse<CharacterDto>>
 }
-
-
-
-
-//
-//interface MarvelApiService {
-//    @GET("v1/public/characters")
-//    suspend fun getCharacters() : Response<BaseMarvel<CharacterData>>
-//}
-//
-//object Api {
-//
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl(Constant.BASE_URL)
-//        .client(Client.apiClient.build())
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    val marvelApi = retrofit.create(MarvelApiService::class.java)
-//}
-//
-//object Client {
-//    val apiClient = OkHttpClient.Builder()
-//        .addInterceptor(Interceptor { chain ->
-//            val origin = chain.request()
-//            val originHttpUrl = origin.url
-//                .newBuilder()
-//                .addQueryParameter("ts", Constant.TS)
-//                .addQueryParameter("apikey",Constant.API_KEY)
-//                .addQueryParameter("hash",Constant.MY_HASH)
-//                .build()
-//            val request = origin.newBuilder().url(originHttpUrl).build()
-//            chain.proceed(request)
-//        })
-//}
