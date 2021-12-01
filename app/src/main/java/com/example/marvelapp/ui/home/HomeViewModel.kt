@@ -8,11 +8,16 @@ import com.example.marvelapp.domain.MarvelRepository
 import com.example.marvelapp.domain.MarvelRepositoryImpl
 import com.example.marvelapp.domain.models.Character
 import com.example.marvelapp.util.Resources
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
 
-class HomeViewModel: ViewModel(),CharacterInteractionListener {
-    val repository : MarvelRepository = MarvelRepositoryImpl()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository : MarvelRepository
+): ViewModel(),CharacterInteractionListener {
+
     val charecters  = repository.getCharacters().asLiveData()
 
 //

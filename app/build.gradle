@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -111,5 +112,8 @@ dependencies {
     def okhttp_version = '5.0.0-alpha.3'
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    implementation 'com.google.dagger:hilt-android:2.40.3'
+    kapt 'com.google.dagger:hilt-compiler:2.40.3'
 
 }

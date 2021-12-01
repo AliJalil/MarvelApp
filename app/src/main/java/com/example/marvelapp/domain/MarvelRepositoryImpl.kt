@@ -8,11 +8,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import com.example.marvelapp.domain.models.Character
 import retrofit2.Response
+import javax.inject.Inject
 
 
-class MarvelRepositoryImpl : MarvelRepository {
+class MarvelRepositoryImpl @Inject constructor(
+    private val apiService : MarvelApiServices
+) : MarvelRepository {
 
-    private val apiService = MarvelApiServices.apiService
+
 //    private val characterDao = MarvelDatabase.getInstanceWithoutContext().marvelDao()
 
 

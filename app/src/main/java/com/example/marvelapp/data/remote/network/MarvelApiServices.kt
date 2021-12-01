@@ -17,35 +17,6 @@ interface MarvelApiServices {
     @GET("characters")
     suspend fun getCharacters() : Response<BaseResponse<Character>>
 
-    companion object {
-
-        private val okHttpClient = OkHttpClient
-            .Builder()
-            .addInterceptor(HttpLoggingInterceptor()
-                .apply {
-                    setLevel(HttpLoggingInterceptor.Level.BODY)
-                })
-            .addInterceptor(AuthenticateInterceptor())
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-//        val marvelApi = retrofit.create(MarvelApiService::class.java)
-
-
-
-//
-//        private val retrofit = Retrofit.Builder()
-//            .baseUrl(Constant.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(okHttpClient)
-//            .build()
-        val apiService = retrofit.create(MarvelApiServices::class.java)
-    }
 
 
 }
