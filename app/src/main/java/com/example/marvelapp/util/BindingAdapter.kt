@@ -42,8 +42,8 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 }
 
 @BindingAdapter(value = ["imageUrl"])
-fun ImageView.seImageFromUrl(url: String?) {
-    this.load(url)
+fun seImageFromUrl(view: ImageView,url: String?) {
+    view.load(url)
     {
         placeholder(R.drawable.ic_launcher_foreground)
     }

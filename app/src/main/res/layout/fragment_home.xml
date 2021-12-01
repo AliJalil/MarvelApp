@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:items="@{viewModel.charecters.data}"
+            app:items="@{viewModel.charecters.toData().items.results}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_character"/>
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_loading"
-            app:showOnError="@{viewModel.charecters}"
+            app:showOnLoading="@{viewModel.charecters}"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

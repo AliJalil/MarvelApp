@@ -5,18 +5,18 @@ import com.google.gson.annotations.SerializedName
 
 data class BaseResponse<T>(
     @SerializedName("attributionHTML")
-    var attributionHTML: String?,
+    var attributionHTML: String? = null,
     @SerializedName("attributionText")
-    var attributionText: String?,
+    var attributionText: String? = null,
     @SerializedName("code")
-    var code: Int?,
+    var code: Int? = null,
     @SerializedName("copyright")
-    var copyright: String?,
+    var copyright: String? = null,
     @SerializedName("etag")
-    var etag: String?,
+    var etag: String? = null,
     @SerializedName("status")
-    var status: String?,
+    var status: String? = null,
     @SerializedName("data")
-    val data: DataContainer<T>? = null,
+    val items: DataContainer<T>? = null,
 
 )

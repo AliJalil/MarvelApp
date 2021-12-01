@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Stories(
     @SerializedName("available")
-    var available: Int?,
+    var available: Int? = null,
     @SerializedName("collectionURI")
-    var collectionURI: String?,
+    var collectionURI: String? = null,
     @SerializedName("items")
-    var items: List<ItemXXX>?,
+    var items: List<Item>? = null,
     @SerializedName("returned")
-    var returned: Int?
+    var returned: Int? = null
 )

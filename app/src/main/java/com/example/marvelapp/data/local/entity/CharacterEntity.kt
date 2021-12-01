@@ -8,7 +8,7 @@ data class CharacterEntity(
     @PrimaryKey var id: Long,
     var name: String,
     var description: String,
-     var modified: String,
-    var imageUrl : String
+    var modified: String,
+    var imageUrl: String
 
 )

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Url(
     @SerializedName("type")
-    var type: String?,
+    var type: String? = null,
     @SerializedName("url")
-    var url: String?
+    var url: String? = null
 )

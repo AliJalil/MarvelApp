@@ -14,7 +14,7 @@ abstract class MarvelDatabase : RoomDatabase() {
 
     companion object {
 
-        private const val Database_Name = "ReminderDatabase"
+        private const val Database_Name = "MarvelDatabase"
 
         @Volatile
         private var instance: MarvelDatabase? = null

@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class DataContainer<T>(
     @SerializedName("count")
-    var count: Int?,
+    var count: Int? = null,
     @SerializedName("limit")
-    var limit: Int?,
+    var limit: Int? = null,
     @SerializedName("offset")
-    var offset: Int?,
+    var offset: Int? = null,
     @SerializedName("results")
-    var items: List<T>?,
+    var results: List<T>? = null,
     @SerializedName("total")
-    var total: Int?
+    var total: Int? = null
 )

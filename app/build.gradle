@@ -7,11 +7,12 @@ plugins {
 }
 
 android {
+
     compileSdk 31
 
     defaultConfig {
         applicationId "com.example.marvelapp"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -63,14 +64,14 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    //retrofit implementation
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+//    //retrofit implementation
+//    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+//    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
-    //okhttp implementation
-    def okhttp_version = "4.9.1"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+//    //okhttp implementation
+//    def okhttp_version = "4.9.1"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+//    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     //Glide implementation
     def glide_version = "4.11.0"
@@ -83,7 +84,8 @@ dependencies {
     implementation 'com.airbnb.android:lottie:4.2.0'
 
     //Room implementation
-    def room_version = "2.3.0"
+//    def room_version = "2.3.0"
+    def room_version = "2.4.0-beta02"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava3:$room_version"
@@ -92,5 +94,22 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil:1.4.0")
 
+
+
+    //retrofit implementation
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+////okhttp implementation
+//    def okhttp_version = "4.9.1"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+//    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+//
+
+
+    //khttp implementation
+    def okhttp_version = '5.0.0-alpha.3'
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
 }

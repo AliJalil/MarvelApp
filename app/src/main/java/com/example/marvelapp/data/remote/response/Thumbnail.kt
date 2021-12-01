@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Thumbnail(
     @SerializedName("extension")
-    var extension: String?,
+    var extension: String? = null,
     @SerializedName("path")
-    var path: String?
+    var path: String? = null
 )

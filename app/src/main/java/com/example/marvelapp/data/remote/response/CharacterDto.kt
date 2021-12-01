@@ -7,23 +7,23 @@ data class CharacterDto(
     @SerializedName("comics")
     var comics: Comics? = null,
     @SerializedName("description")
-    var description: String?,
+    var description: String?= null,
     @SerializedName("events")
-    var events: Events?,
+    var events: Events?= null,
     @SerializedName("id")
-    var id: Int?,
+    var id: Int?= null,
     @SerializedName("modified")
-    var modified: String?,
+    var modified: String?= null,
     @SerializedName("name")
-    var name: String?,
+    var name: String?= null,
     @SerializedName("resourceURI")
-    var resourceURI: String?,
+    var resourceURI: String?= null,
     @SerializedName("series")
-    var series: Series?,
+    var series: Series?= null,
     @SerializedName("stories")
-    var stories: Stories?,
+    var stories: Stories?= null,
     @SerializedName("thumbnail")
-    var thumbnail: Thumbnail?,
+    var thumbnail: Thumbnail?= null,
     @SerializedName("urls")
-    var urls: List<Url>?
+    var urls: List<Url>? = null
 )
