@@ -20,6 +20,10 @@ class HomeViewModel @Inject constructor(
 
     val charecters  = repository.getCharacters().asLiveData()
 
+    override fun onClickCharacter(character: Character) {
+
+    }
+
 //
 //    init {
 //        viewModelScope.launch {
