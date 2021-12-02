@@ -26,7 +26,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 //    lateinit var injectedField: String
 
     override fun setup() {
-        binding.searchRecycler.adapter = CharacterAdapter(mutableListOf(), viewModel)
+        binding.searchRecycler.adapter = SearchAdapter(mutableListOf(), viewModel)
 //        (requireActivity().application as MarvelApplication).container
 //        Toast.makeText(requireContext(), injectedField, Toast.LENGTH_SHORT).show()
     }
