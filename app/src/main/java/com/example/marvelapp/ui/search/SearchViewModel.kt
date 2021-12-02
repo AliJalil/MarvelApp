@@ -12,11 +12,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository : MarvelRepository
-): BaseViewModel(), CharacterInteractionListener {
+    private val repository: MarvelRepository
+) : BaseViewModel(), CharacterInteractionListener {
 
-//    val charecters  = repository.getCharacters().asLiveData()
-     val characterName = MutableLiveData<String?>()
+    //    val charecters  = repository.getCharacters().asLiveData()
+    val characterName = MutableLiveData<String?>()
     var searchResult = MutableLiveData<Resources<List<Character>?>>()
 
     fun clearSearchTxt() {
