@@ -10,6 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import com.example.marvelapp.domain.models.Character
 import com.example.marvelapp.util.Constant
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MarvelApiServices {
 
@@ -17,4 +19,12 @@ interface MarvelApiServices {
 
     @GET("characters")
     suspend fun getCharacters() : Response<BaseResponse<CharacterDto>>
+
+
+
+    @GET("characters")
+    suspend fun searchCharacters(
+        @Query("name",encoded = false) characterName: String?,
+    ): Response<BaseResponse<CharacterDto>>
+
 }
