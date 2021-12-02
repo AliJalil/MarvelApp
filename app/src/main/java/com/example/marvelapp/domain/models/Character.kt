@@ -1,8 +1,14 @@
 package com.example.marvelapp.domain.models
 
-data class Character
-    (
-    val id: Int?,
-    val name: String?,
-    val imageUrl: String?
+
+
+data class Character (
+     var id: Int? = 0,
+     var name: String? = "",
+     var imageUrl: String? = "",
+     var description: String? = "",
+     var modified: String? = "",
+
 )
+
+
