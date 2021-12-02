@@ -3,6 +3,7 @@ package com.example.marvelapp.domain
 import android.util.Log
 import com.example.marvelapp.data.remote.network.MarvelApiServices
 import com.example.marvelapp.data.remote.response.BaseResponse
+import com.example.marvelapp.domain.mapper.Mapper
 import com.example.marvelapp.util.Resources
 import com.example.marvelapp.util.Resources.*
 import kotlinx.coroutines.flow.Flow
@@ -53,8 +54,24 @@ class MarvelRepositoryImpl @Inject constructor(
         return flow {
             emit(Loading)
             try {
-
                 val characters = apiService.getCharacters().body()?.items?.results?.map { characterDto ->
+                    characterMapper.map(characterDto)
+                }
+                emit(Success(characters))
+
+            } catch (throwable: Throwable) {
+                emit(Error(throwable))
+                Log.v("ALI", throwable.message.toString())
+            }
+        }
+    }
+
+
+    override fun searchCharacters(characterName: String): Flow<Resources<List<Character>?>> {
+        return flow {
+            emit(Loading)
+            try {
+                val characters = apiService.searchCharacters(characterName).body()?.items?.results?.map { characterDto ->
                     characterMapper.map(characterDto)
                 }
                 emit(Success(characters))
