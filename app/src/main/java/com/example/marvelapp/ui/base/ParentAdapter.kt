@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.BR
 import com.example.marvelapp.R
 import com.example.marvelapp.domain.HomeItem
-import com.example.marvelapp.ui.home.CharacterAdapter
 import java.lang.Exception
 import  com.example.marvelapp.domain.HomeItemType
+import com.example.marvelapp.ui.home.CharacterInteractionListener
+import com.example.marvelapp.ui.home.HomeAdapter
 
 class ParentAdapter<T>(
     private var items: List<T>,
@@ -87,10 +88,18 @@ class ParentAdapter<T>(
 //    }
 
     private fun bindNestedItems(holder: ParentViewHolder, position: Int) {
-        val nestedItems = (items[position] as HomeItem<*>).item as List<*>
+//        val nestedItems = (items[position] as HomeItem<*>).myItem
 //        holder.binding.setVariable(BR.nestedItem, nestedItems)
-        holder.binding.setVariable(BR.childAdapter, ChildItemsAdapter(nestedItems, listener!!))
+//        holder.binding.setVariable(BR.childAdapter, ChildItemsAdapter(mutableListOf(), listener!!))
+        holder.binding.setVariable(
+            BR.childAdapter,
+            HomeAdapter(mutableListOf(), listener as CharacterInteractionListener)
+        )
 
+//
+//        holder.binding.apply {
+//            parentRecycler.adapter = adapter
+//        }
 //        val adapter = ChildItemsAdapter(nestedItems, listener!!)
 //        holder.binding.apply { parentRecycler.adapter = adapter }
     }
@@ -130,7 +139,7 @@ class ParentAdapter<T>(
 //}
 
 
-class ChildItemsAdapter<I>(items: List<I>, listener: BaseInteractionListener) :
-    BaseAdapter<I>(items, listener) {
-    override val layoutId: Int = R.layout.item_character
-}
+//class ChildItemsAdapter<I>(items: List<I>, listener: BaseInteractionListener) :
+//    BaseAdapter<I>(items, listener) {
+//    override val layoutId: Int = R.layout.item_character
+//}
