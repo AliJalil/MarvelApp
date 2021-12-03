@@ -40,7 +40,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:items="@{item.myItem}"
             tools:listitem="@layout/item_character" />
 
+        <TextView
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.23000002" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
