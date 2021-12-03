@@ -36,6 +36,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+
     override fun onClickCharacter(character: Character) {
 
     }
