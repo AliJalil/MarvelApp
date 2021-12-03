@@ -10,10 +10,6 @@
             type="com.example.marvelapp.ui.base.BaseAdapter" />
 
         <variable
-            name="title"
-            type="String" />
-
-        <variable
             name="item"
             type="com.example.marvelapp.domain.HomeItem" />
     </data>
@@ -23,13 +19,6 @@
         android:layout_height="wrap_content"
         android:background="@color/app_color">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/parentRecycler"
@@ -42,6 +31,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:items="@{item.myItem}"
             tools:listitem="@layout/item_character" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:layout_width="500dp"
