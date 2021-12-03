@@ -42,7 +42,6 @@ abstract class BaseAdapter<T>(
         val moviesDiffUtil = DiffUtil.calculateDiff(MarvelDiffUtils(items, newItems))
         items = newItems
         moviesDiffUtil.dispatchUpdatesTo(this)
-
     }
 
     fun getItems() = items

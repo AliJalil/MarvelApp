@@ -4,9 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="nestedItem"
-            type="com.example.marvelapp.domain.models.Character" />
+            name="childAdapter"
+            type="com.example.marvelapp.ui.base.BaseAdapter" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="item"
+            type="com.example.marvelapp.domain.HomeItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,13 +23,24 @@
         android:layout_height="wrap_content"
         android:background="@color/app_color">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/parentRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:listitem="@layout/item_character" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

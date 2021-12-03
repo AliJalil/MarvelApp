@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.marvelapp.R
+import com.example.marvelapp.ui.base.ParentAdapter
 
 
 @BindingAdapter(value = ["app:showOnLoading"])
@@ -47,14 +48,24 @@ fun showOnEmpty(view: View, show: Boolean) {
     view.visibility = if (show) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter(value = ["app:items"])
-fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+//@BindingAdapter(value = ["app:items"])
+//fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+//    if (items != null) {
+//        (view.adapter as BaseAdapter<T>?)?.setItems(items)
+//    } else {
+//        (view.adapter as BaseAdapter<T>?)?.setItems(emptyList())
+//    }
+//}
+
+@BindingAdapter(value = ["app:items_parent"])
+fun <T> setRecyclerParentItems(view: RecyclerView, items: List<T>?) {
     if (items != null) {
-        (view.adapter as BaseAdapter<T>?)?.setItems(items)
+        (view.adapter as ParentAdapter<T>?)?.setItems(items)
     } else {
-        (view.adapter as BaseAdapter<T>?)?.setItems(emptyList())
+        (view.adapter as ParentAdapter<T>?)?.setItems(emptyList())
     }
 }
+
 
 @BindingAdapter(value = ["imageUrl"])
 fun seImageFromUrl(view: ImageView, url: String?) {
