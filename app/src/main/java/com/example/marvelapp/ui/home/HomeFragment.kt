@@ -26,12 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     lateinit var injectedField: String
 
     override fun setup() {
-
-        binding.recyclerHome.adapter = ParentAdapter(mutableListOf(), viewModel)
-
-
-//        (requireActivity().application as MarvelApplication).container
-//        Toast.makeText(requireContext(), injectedField, Toast.LENGTH_SHORT).show()
+        binding.recyclerHome.adapter = HomeAdapter(mutableListOf(), viewModel)
     }
 
 }
