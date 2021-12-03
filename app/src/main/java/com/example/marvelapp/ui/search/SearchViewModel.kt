@@ -23,12 +23,7 @@ class SearchViewModel @Inject constructor(
     private val repository: MarvelRepository
 ) : BaseViewModel(), CharacterInteractionListener {
 
-    //    val charecters  = repository.getCharacters().asLiveData()
     val characterName = MutableStateFlow("")
-//    var searchResult: LiveData<List<Character>> = MutableLiveData()
-
-
-
     private var _searchResult = MutableLiveData<List<Character>>()
     val searchResult: LiveData<List<Character>>
             get() = _searchResult
@@ -41,22 +36,8 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun clearSearchTxt() {
-//        characterName.postValue("")
-    }
-
-//    fun searchCharacters() {
-//        collectValue(repository.searchCharacters(characterName.value), searchResult)
-//    }
-
     override fun onClickCharacter(character: Character) {
 
     }
 
-//    init {
-//        viewModelScope.launch {
-//            repository.refreshCharacters()
-//        }
-//
-//    }
 }
