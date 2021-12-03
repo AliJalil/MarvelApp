@@ -10,11 +10,11 @@ import com.example.marvelapp.data.local.entity.CharacterEntity
 
 @Database(entities = [CharacterEntity::class], version = 1)
 abstract class MarvelDatabase : RoomDatabase() {
-    abstract fun marvelDao(): MarvelCharacterDao
+    abstract fun marvelCharacterDao(): MarvelCharacterDao
 
     companion object {
 
-        private const val Database_Name = "MarvelDatabase"
+        private const val DATABASE_NAME = "MarvelDatabase"
 
         @Volatile
         private var instance: MarvelDatabase? = null
@@ -28,8 +28,8 @@ abstract class MarvelDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): MarvelDatabase {
-            return Room.databaseBuilder(context, MarvelDatabase::class.java, Database_Name)
-                .build()
+            return Room.databaseBuilder(context, MarvelDatabase::class.java, DATABASE_NAME)
+                .allowMainThreadQueries().build()
         }
     }
 }
