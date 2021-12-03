@@ -10,5 +10,5 @@ data class CharacterEntity(
     var description: String,
     var modified: String,
     var imageUrl: String
-
 )
+
