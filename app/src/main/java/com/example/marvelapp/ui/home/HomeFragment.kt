@@ -27,7 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun setup() {
 
-        binding.recyclerHome.adapter = ParentAdapter(viewModel.itemsList, viewModel)
+        binding.recyclerHome.adapter = ParentAdapter(mutableListOf(), viewModel)
 
 
 //        (requireActivity().application as MarvelApplication).container
