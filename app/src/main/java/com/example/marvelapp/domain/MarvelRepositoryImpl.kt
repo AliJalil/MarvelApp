@@ -2,8 +2,6 @@ package com.example.marvelapp.domain
 
 import android.util.Log
 import com.example.marvelapp.data.remote.network.MarvelApiServices
-import com.example.marvelapp.data.remote.response.BaseResponse
-import com.example.marvelapp.domain.mapper.Mapper
 import com.example.marvelapp.util.Resources
 import com.example.marvelapp.util.Resources.*
 import kotlinx.coroutines.flow.Flow
@@ -12,15 +10,16 @@ import com.example.marvelapp.domain.models.Character
 import com.example.marvelapp.domain.models.CharacterMapper
 import retrofit2.Response
 import javax.inject.Inject
+import com.example.marvelapp.data.local.MarvelDatabase
 
 
 class MarvelRepositoryImpl @Inject constructor(
     private val apiService: MarvelApiServices,
-    private val characterMapper : CharacterMapper
+    private val characterMapper: CharacterMapper
 ) : MarvelRepository {
 
 
-//    private val characterDao = MarvelDatabase.getInstanceWithoutContext().marvelDao()
+//
 
 
     private fun <T> wrapWithFlow(endPointResponse: suspend () -> Response<T>): Flow<Resources<T?>> {
@@ -49,16 +48,16 @@ class MarvelRepositoryImpl @Inject constructor(
 //    }
 
 
-//    private val characterMapper = CharacterMapper()
+    //    private val characterMapper = CharacterMapper()
     override fun getCharacters(): Flow<Resources<List<Character>?>> {
         return flow {
             emit(Loading)
             try {
-                val characters = apiService.getCharacters().body()?.items?.results?.map { characterDto ->
-                    characterMapper.map(characterDto)
-                }
+                val characters =
+                    apiService.getCharacters().body()?.items?.results?.map { characterDto ->
+                        characterMapper.mapRemoteToDomain(characterDto)
+                    }
                 emit(Success(characters))
-
             } catch (throwable: Throwable) {
                 emit(Error(throwable))
                 Log.v("ALI", throwable.message.toString())
@@ -67,26 +66,54 @@ class MarvelRepositoryImpl @Inject constructor(
     }
 
 
-    override fun searchCharacters(characterName: String): Flow<Resources<List<Character>?>> {
-        return flow {
-            emit(Loading)
-            try {
-                val characters = apiService.searchCharacters(characterName).body()?.items?.results?.map { characterDto ->
-                    characterMapper.map(characterDto)
-                }
-                emit(Success(characters))
-
-            } catch (throwable: Throwable) {
-                emit(Error(throwable))
-                Log.v("ALI", throwable.message.toString())
-            }
+    override suspend fun searchCharacters(characterName: String): List<Character> {
+        val dbResult = characterDao.searchCharacters("%${characterName}%")
+            .map { characterMapper.mapEntityToDomain(it) }
+        return if (dbResult.isEmpty()) {
+            saveSearchCharacters(characterName)!!
+        } else {
+            dbResult
         }
     }
 
+    private val characterDao = MarvelDatabase.getInstanceWithoutContext().marvelCharacterDao()
+    override suspend fun saveSearchCharacters(characterName: String): List<Character> {
+        val characters = apiService.searchCharacters(characterName)
+            .body()?.items?.results?.map { characterDto ->
+                characterMapper.mapRemoteToEntity(characterDto)
+            }
+        characters?.let { characterDao.addCharacters(it) }
+
+        return characters?.let {
+            it.map { characterEntity ->
+                characterMapper.mapEntityToDomain(characterEntity)
+            }
+        }.orEmpty()
+    }
+}
+
+
+//override fun searchCharactersX(characterName: String): Flow<Resources<List<Character>?>> {
+//    return flow {
+//        emit(Loading)
+//        try {
+//            val characters = apiService.searchCharacters(characterName)
+//                .body()?.items?.results?.map { characterDto ->
+//                    characterMapper.mapRemoteToEntity(characterDto)
+//                }
+//            characters?.let { characterDao.addCharacters(it) }
+////                emit(Success(characters))
+//
+//        } catch (throwable: Throwable) {
+//            emit(Error(throwable))
+//            Log.v("ALI", throwable.message.toString())
+//        }
+//    }
+//}
 
 //    override fun getCharacter() = characterDao.getCharacters()
 
-//
+
 //    override suspend fun refreshCharacters() {
 //        try {
 //            val response = apiService.getCharecters()
@@ -107,4 +134,3 @@ class MarvelRepositoryImpl @Inject constructor(
 //
 //        }
 //    }
-}
