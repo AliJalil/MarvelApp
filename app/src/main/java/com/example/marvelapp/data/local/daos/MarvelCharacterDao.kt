@@ -12,4 +12,8 @@ interface MarvelCharacterDao {
 
     @Query("Select * from CharacterEntity")
     fun getCharacters(): Flow<List<CharacterEntity>>
+
+
+    @Query("Select * from CharacterEntity where name like :characterName")
+    fun searchCharacters(characterName: String): List<CharacterEntity>
 }
