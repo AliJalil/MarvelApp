@@ -20,42 +20,27 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel(), CharacterInteractionListener {
 
     var charecters: Flow<Resources<List<Character>?>> = repository.getCharacters()
-//    val itemsList: MutableList<HomeItem<Any>> = mutableListOf()
-    var items: List<Character>? = mutableListOf()
-
-
-   var itemsList = MutableLiveData<MutableList<HomeItem<Any>>>()
-
+    var items: List<Character>? = mutableListOf<Character>()
+    var itemsList = MutableLiveData<MutableList<HomeItem<Any>>>()
+    var tempItems = mutableListOf<HomeItem<Any>>()
 
     init {
         charecters = repository.getCharacters()
-
         viewModelScope.launch {
-             items = charecters.first { it is Resources.Success }.data
-            Log.v("ALLLI items", items.toString())
-
-            itemsList.value?.add(HomeItem(items.orEmpty(), HomeItemType.TYPE_PARENT))
-            Log.v("ALLLI", itemsList.toString())
-
-            itemsList.notifyObserver()
+            items = charecters.first { it is Resources.Success }.data
+            items?.let {
+                val tempHomeItem = HomeItem(it, HomeItemType.TYPE_PARENT)
+                tempItems.add(tempHomeItem as HomeItem<Any>)
+                itemsList.postValue(tempItems)
+            }
         }
-
-
-
     }
 
     override fun onClickCharacter(character: Character) {
 
     }
-
-//
-//    init {
-//        viewModelScope.launch {
-//            repository.refreshCharacters()
-//        }
-//
-//    }
 }
+
 
 suspend fun <T> Flow<List<T>>.flattenToList() =
     flatMapConcat { it.asFlow() }.toList()
