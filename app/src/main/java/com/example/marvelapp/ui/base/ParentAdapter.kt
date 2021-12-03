@@ -11,35 +11,24 @@ import com.example.marvelapp.R
 import com.example.marvelapp.domain.HomeItem
 import java.lang.Exception
 import  com.example.marvelapp.domain.HomeItemType
+import com.example.marvelapp.domain.models.Character
 import com.example.marvelapp.ui.home.CharacterInteractionListener
+import com.example.marvelapp.ui.home.ChildAdapter
 import com.example.marvelapp.ui.home.HomeAdapter
 
-class ParentAdapter<T>(
+abstract class ParentAdapter<T>(
     private var items: List<T>,
     private var listener: BaseInteractionListener?
 ) : RecyclerView.Adapter<ParentAdapter.BaseViewHolder>() {
 
-//    abstract val layoutId: R.layout
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-//        return ItemViewHolder(
-//            DataBindingUtil.inflate(
-//                LayoutInflater.from(parent.context),
-//                layoutId,
-//                parent,
-//                false
-//            )
-//        )
-//    }
-
-
+    abstract val layoutId: Int
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             VIEW_ITEM -> {
                 ChildViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
-                        R.layout.item_character,
+                        layoutId,
                         parent,
                         false
                     )
@@ -49,7 +38,7 @@ class ParentAdapter<T>(
                 ParentViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
-                        R.layout.item_parent,
+                        layoutId,
                         parent,
                         false
                     )
@@ -59,51 +48,27 @@ class ParentAdapter<T>(
         }
     }
 
-
-//    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-//        val currentItem = items[position]
-//        when (holder) {
-//            is ItemViewHolder -> {
-//                holder.binding.setVariable(BR.item, currentItem)
-//                holder.binding.setVariable(BR.listener, listener)
-//            }
-//            is NestedViewHolder ->
-//            {
-//                holder.binding.setVariable(BR.nestedItem, currentItem)
-//            }
-//        }
-//    }
-
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder) {
-//            is ChildViewHolder -> bindItem(holder, position)
+            is ChildViewHolder -> bindItem(holder, position)
             is ParentViewHolder -> bindNestedItems(holder, position)
         }
     }
 
-
-//    private fun bindItem(holder: ChildViewHolder, position: Int) {
-//        val titleText = (items[position] as HomeItem<*>).item as String
-//        holder.binding.setVariable(BR.title, titleText)
-//    }
-
-    private fun bindNestedItems(holder: ParentViewHolder, position: Int) {
-//        val nestedItems = (items[position] as HomeItem<*>).myItem
-//        holder.binding.setVariable(BR.nestedItem, nestedItems)
-//        holder.binding.setVariable(BR.childAdapter, ChildItemsAdapter(mutableListOf(), listener!!))
-        holder.binding.setVariable(
-            BR.childAdapter,
-            HomeAdapter(mutableListOf(), listener as CharacterInteractionListener)
-        )
-
-//
-//        holder.binding.apply {
-//            parentRecycler.adapter = adapter
-//        }
-//        val adapter = ChildItemsAdapter(nestedItems, listener!!)
-//        holder.binding.apply { parentRecycler.adapter = adapter }
+    private fun bindItem(holder: ChildViewHolder, position: Int) {
+        val currentItem = items[position]
+        holder.binding.setVariable(BR.item, currentItem)
+        holder.binding.setVariable(BR.listener, listener)
     }
 
+    private fun bindNestedItems(holder: ParentViewHolder, position: Int) {
+
+        val listItems =  ((items[position] as HomeItem<*>).myItem)  as List<T>
+        holder.binding.setVariable(
+            BR.childAdapter,
+            ChildAdapter(listItems, listener as CharacterInteractionListener)
+        )
+    }
 
     override fun getItemViewType(position: Int): Int {
         return when ((items[position] as HomeItem<*>).type) {
@@ -130,16 +95,3 @@ class ParentAdapter<T>(
         private const val VIEW_PARENT = 2
     }
 }
-//
-//abstract class BaseAdapter<T>(
-//    private var items: List<T>,
-//    private var listener: BaseInteractionListener?
-//) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
-//
-//}
-
-
-//class ChildItemsAdapter<I>(items: List<I>, listener: BaseInteractionListener) :
-//    BaseAdapter<I>(items, listener) {
-//    override val layoutId: Int = R.layout.item_character
-//}
