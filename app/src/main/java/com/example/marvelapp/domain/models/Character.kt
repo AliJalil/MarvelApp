@@ -8,7 +8,6 @@ data class Character (
      var imageUrl: String? = "",
      var description: String? = "",
      var modified: String? = "",
-
 )
 
 
