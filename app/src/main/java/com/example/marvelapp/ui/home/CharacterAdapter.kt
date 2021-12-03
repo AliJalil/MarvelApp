@@ -9,3 +9,10 @@ class CharacterAdapter(
 ) : BaseAdapter<Character>(items, listener) {
     override val layoutId: Int = R.layout.item_character
 }
+
+
+class HomeAdapter(
+    items: List<Character>, listener: CharacterInteractionListener
+) : BaseAdapter<Character>(items, listener) {
+    override val layoutId: Int = R.layout.item_character
+}
