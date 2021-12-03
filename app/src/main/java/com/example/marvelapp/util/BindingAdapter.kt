@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.marvelapp.R
+import com.example.marvelapp.domain.models.Character
 import com.example.marvelapp.ui.base.ParentAdapter
 
 
@@ -48,15 +49,23 @@ fun showOnEmpty(view: View, show: Boolean) {
     view.visibility = if (show) View.VISIBLE else View.GONE
 }
 
-//@BindingAdapter(value = ["app:items"])
-//fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
-//    if (items != null) {
-//        (view.adapter as BaseAdapter<T>?)?.setItems(items)
-//    } else {
-//        (view.adapter as BaseAdapter<T>?)?.setItems(emptyList())
-//    }
-//}
+@BindingAdapter(value = ["app:items"])
+fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+    if (items != null) {
+        (view.adapter as BaseAdapter<T>?)?.setItems(items)
+    } else {
+        (view.adapter as BaseAdapter<T>?)?.setItems(emptyList())
+    }
+}
 
+@BindingAdapter(value = ["app:items_child"])
+fun <T> setRecyclerChildItems(view: RecyclerView, items:T?) {
+    if (items != null) {
+        (view.adapter as BaseAdapter<Character>?)?.setItems(items as List<Character>)
+    } else {
+        (view.adapter as BaseAdapter<Character>?)?.setItems(emptyList())
+    }
+}
 @BindingAdapter(value = ["app:items_parent"])
 fun <T> setRecyclerParentItems(view: RecyclerView, items: List<T>?) {
     if (items != null) {
