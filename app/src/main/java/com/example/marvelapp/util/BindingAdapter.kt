@@ -58,14 +58,15 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     }
 }
 
-@BindingAdapter(value = ["app:items_child"])
-fun <T> setRecyclerChildItems(view: RecyclerView, items:T?) {
-    if (items != null) {
-        (view.adapter as BaseAdapter<Character>?)?.setItems(items as List<Character>)
-    } else {
-        (view.adapter as BaseAdapter<Character>?)?.setItems(emptyList())
-    }
-}
+//@BindingAdapter(value = ["app:items_child"])
+//fun <T> setRecyclerChildItems(view: RecyclerView, items:T?) {
+//    if (items != null) {
+//        (view.adapter as BaseAdapter<Character>?)?.setItems(items as List<Character>)
+//    } else {
+//        (view.adapter as BaseAdapter<Character>?)?.setItems(emptyList())
+//    }
+//}
+
 @BindingAdapter(value = ["app:items_parent"])
 fun <T> setRecyclerParentItems(view: RecyclerView, items: List<T>?) {
     if (items != null) {
