@@ -33,14 +33,14 @@ fun <T> showOnSuccess(view: View, resources: Resources<T>?) {
         view.visibility = View.GONE
 }
 
-//
-//@BindingAdapter(value = ["app:showOnEmpty"])
-//fun <T> showOnEmpty(view: View, items: List<T>?) {
-//    if (items!!.isEmpty())
-//        view.visibility = View.VISIBLE
-//    else
-//        view.visibility = View.GONE
-//}
+
+@BindingAdapter(value = ["app:showOnEmpty"])
+fun <T> showOnEmpty(view: View, items: List<T>?) {
+    if (items!!.isEmpty())
+        view.visibility = View.VISIBLE
+    else
+        view.visibility = View.GONE
+}
 
 @BindingAdapter("showOnEmpty")
 fun showOnEmpty(view: View, show: Boolean) {
