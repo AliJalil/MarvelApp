@@ -31,8 +31,8 @@ object RepositoryModule {
     @Provides
     fun provideCharacterMapper(): CharacterMapper = CharacterMapper()
 
-    @Provides
-    fun provideMarvelDatabase(): MarvelDatabase = MarvelDatabase.getInstanceWithoutContext()
-
+//    @Provides
+//    fun provideMarvelDatabase(): MarvelDatabase = MarvelDatabase.getInstanceWithoutContext()
+//
 
 }
