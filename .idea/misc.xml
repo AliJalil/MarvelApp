@@ -6,14 +6,16 @@
         <entry key="app/src/main/res/drawable/gradiant_bg.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.29259259259259257" />
         <entry key="app/src/main/res/drawable/rounded_corner_view.xml" value="0.2984375" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.11442786069651742" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2259963768115942" />
+        <entry key="app/src/main/res/layout/fragment_home_x.xml" value="0.2740036231884058" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.11165048543689321" />
         <entry key="app/src/main/res/layout/item_character.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/item_child.xml" value="0.2740036231884058" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_parent.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_parent.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_search.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.15862068965517243" />
       </map>
     </option>
   </component>

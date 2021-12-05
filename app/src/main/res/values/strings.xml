@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MarvelApp</string>
+    <string name="your_recent_searches">Your Recent Searches</string>
+    <string name="type_to_search">Type To Search</string>
 </resources>
