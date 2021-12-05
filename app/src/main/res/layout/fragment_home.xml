@@ -13,20 +13,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/app_color">
 
+        <ImageButton
+            android:id="@+id/searchBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:background="@drawable/ic_search"
+            android:transitionName="@string/home_to_search_transition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerHome"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/medium_margin"
             app:items_parent="@{viewModel.itemsList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchBtn"
             tools:listitem="@layout/item_parent" />
 
         <ImageView
@@ -36,17 +47,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_loading"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            isRecyclerEmpty="@{viewModel.itemsList}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
