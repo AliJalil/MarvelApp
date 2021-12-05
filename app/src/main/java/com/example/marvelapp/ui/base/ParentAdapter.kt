@@ -1,5 +1,6 @@
 package com.example.marvelapp.ui.base
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,8 +13,9 @@ import com.example.marvelapp.domain.HomeItem
 import java.lang.Exception
 import  com.example.marvelapp.domain.HomeItemType
 import com.example.marvelapp.domain.models.Character
+import com.example.marvelapp.ui.home.CharacterAdapter
 import com.example.marvelapp.ui.home.CharacterInteractionListener
-import com.example.marvelapp.ui.home.ChildAdapter
+
 import com.example.marvelapp.ui.home.HomeAdapter
 
 abstract class ParentAdapter<T>(
@@ -61,13 +63,17 @@ abstract class ParentAdapter<T>(
         holder.binding.setVariable(BR.listener, listener)
     }
 
+    lateinit var childAdapter: CharacterAdapter
+    @SuppressLint("NotifyDataSetChanged")
     private fun bindNestedItems(holder: ParentViewHolder, position: Int) {
 
-        val listItems =  ((items[position] as HomeItem<*>).myItem)  as List<T>
+        val listItems = ((items[position] as HomeItem<*>).myItem) as List<Character>
+        childAdapter = CharacterAdapter(listItems, listener as CharacterInteractionListener)
         holder.binding.setVariable(
             BR.childAdapter,
-            ChildAdapter(listItems, listener as CharacterInteractionListener)
+            childAdapter
         )
+        childAdapter.notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
