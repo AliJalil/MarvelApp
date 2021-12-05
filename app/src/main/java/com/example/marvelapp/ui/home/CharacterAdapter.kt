@@ -18,8 +18,8 @@ class HomeAdapter(
     override val layoutId: Int = R.layout.item_parent
 }
 
-class ChildAdapter<T>(
-    items: List<T>, listener: CharacterInteractionListener
-) : BaseAdapter<T>(items, listener) {
-    override val layoutId: Int = R.layout.item_character
-}
+//class ChildAdapter<T>(
+//    items: List<T>, listener: CharacterInteractionListener
+//) : BaseAdapter<T>(items, listener) {
+//    override val layoutId: Int = R.layout.item_character
+//}
