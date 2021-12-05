@@ -22,12 +22,11 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/medium_margin"
             app:items_parent="@{viewModel.itemsList}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:spanCount="2"
             tools:listitem="@layout/item_parent" />
 
         <ImageView
@@ -49,16 +48,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:text="@{String.valueOf(viewModel.itemsList.size())}"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23000002" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
