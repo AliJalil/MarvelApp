@@ -5,11 +5,12 @@
 
     <data>
 
-    <variable
-        name="viewModel"
-        type="com.example.marvelapp.ui.home.HomeViewModel" />
+        <variable
+            name="viewModel"
+            type="com.example.marvelapp.ui.home.HomeViewModel" />
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,35 +21,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/medium_margin"
+            app:items_parent="@{viewModel.itemsList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:items="@{viewModel.charecters.data}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/item_character"/>
+            tools:listitem="@layout/item_parent" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_error"
-            app:showOnError="@{viewModel.charecters}"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:src="@drawable/ic_loading"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_loading"
-            app:showOnLoading="@{viewModel.charecters}"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

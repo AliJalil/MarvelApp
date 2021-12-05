@@ -6,7 +6,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.marvelapp.MarvelApplication
 import com.example.marvelapp.databinding.FragmentHomeBinding
+import com.example.marvelapp.domain.HomeItem
 import com.example.marvelapp.ui.base.BaseFragment
+import com.example.marvelapp.ui.base.ParentAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import javax.inject.Named
@@ -24,9 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     lateinit var injectedField: String
 
     override fun setup() {
-        binding.recyclerHome.adapter = CharacterAdapter(mutableListOf(), viewModel)
-        (requireActivity().application as MarvelApplication).container
-        Toast.makeText(requireContext(), injectedField, Toast.LENGTH_SHORT).show()
+        binding.recyclerHome.adapter = HomeAdapter(mutableListOf(), viewModel)
     }
 
 }

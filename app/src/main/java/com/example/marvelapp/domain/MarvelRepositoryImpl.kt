@@ -29,7 +29,7 @@ class MarvelRepositoryImpl @Inject constructor(
                     }
                 emit(Success(characters))
             } catch (throwable: Throwable) {
-                emit(Error(throwable))
+//                emit(Error(throwable))
                 Log.v("ALI", throwable.message.toString())
             }
         }

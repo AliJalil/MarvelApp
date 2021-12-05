@@ -1,25 +1,51 @@
 package com.example.marvelapp.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.example.marvelapp.data.remote.response.BaseResponse
+import android.util.Log
+import androidx.lifecycle.*
+import com.example.marvelapp.domain.HomeItem
 import com.example.marvelapp.domain.MarvelRepository
-import com.example.marvelapp.domain.MarvelRepositoryImpl
 import com.example.marvelapp.domain.models.Character
-import com.example.marvelapp.util.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import  com.example.marvelapp.domain.HomeItemType
+import com.example.marvelapp.ui.base.BaseViewModel
+import com.example.marvelapp.util.Resources
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository : MarvelRepository
-): ViewModel(),CharacterInteractionListener {
+    private val repository: MarvelRepository
+) : BaseViewModel(), CharacterInteractionListener {
 
-    val charecters  = repository.getCharacters().asLiveData()
-    override fun onClickCharacter(character: Character) {
+    var charecters: Flow<Resources<List<Character>?>> = repository.getCharacters()
+    var items: List<Character>? = mutableListOf<Character>()
+    var itemsList = MutableLiveData<MutableList<HomeItem<Any>>>()
+    var tempItems = mutableListOf<HomeItem<Any>>()
 
+    init {
+        charecters = repository.getCharacters()
+        viewModelScope.launch {
+            items = charecters.first { it is Resources.Success }.data
+            items?.let {
+                val tempHomeItem = HomeItem(it, HomeItemType.TYPE_PARENT)
+                tempItems.add(tempHomeItem as HomeItem<Any>)
+                itemsList.postValue(tempItems)
+            }
+        }
     }
+
+    override fun onClickCharacter(character: Character) {
+        Log.v("ALI","HELLLLLLO")
+    }
+}
+
+
+suspend fun <T> Flow<List<T>>.flattenToList() =
+    flatMapConcat { it.asFlow() }.toList()
+
+
+fun <T> MutableLiveData<T>.notifyObserver() {
+    this.value = this.value
 }
