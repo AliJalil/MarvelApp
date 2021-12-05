@@ -67,7 +67,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/return_arrow"
             app:layout_constraintTop_toTopOf="parent"
-            app:searchIcon="@drawable/ic_search" />
+            app:searchIcon="@drawable/ic_search"
+            android:transitionName="@string/home_to_search_transition"/>
 
         <ImageView
             android:id="@+id/return_arrow"
