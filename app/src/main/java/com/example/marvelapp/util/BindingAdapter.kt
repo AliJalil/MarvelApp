@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.marvelapp.R
+import com.example.marvelapp.ui.base.ParentAdapter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -68,6 +69,16 @@ fun seImageFromUrl(view: ImageView, url: String?) {
         placeholder(R.drawable.ic_launcher_foreground)
     }
 }
+
+@BindingAdapter(value = ["app:items_parent"])
+fun <T> setRecyclerParentItems(view: RecyclerView, items: List<T>?) {
+    if (items != null) {
+        (view.adapter as ParentAdapter<T>?)?.setItems(items)
+    } else {
+        (view.adapter as ParentAdapter<T>?)?.setItems(emptyList())
+    }
+}
+
 
 @BindingAdapter(value = ["setFormattedDate"])
 fun setFormattedDate(view: TextView, dateStr: String?) {
