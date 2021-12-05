@@ -27,8 +27,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun setup() {
         binding.recyclerHome.adapter = HomeAdapter(mutableListOf(), viewModel)
-
-        
     }
 
 }
