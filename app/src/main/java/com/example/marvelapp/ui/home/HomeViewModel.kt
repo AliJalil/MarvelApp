@@ -19,16 +19,7 @@ class HomeViewModel @Inject constructor(
 ): ViewModel(),CharacterInteractionListener {
 
     val charecters  = repository.getCharacters().asLiveData()
-
     override fun onClickCharacter(character: Character) {
 
     }
-
-//
-//    init {
-//        viewModelScope.launch {
-//            repository.refreshCharacters()
-//        }
-//
-//    }
 }
