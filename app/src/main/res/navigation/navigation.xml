@@ -8,7 +8,12 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marvelapp.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
