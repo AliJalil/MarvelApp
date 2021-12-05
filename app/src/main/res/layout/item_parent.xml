@@ -7,50 +7,28 @@
 
         <variable
             name="childAdapter"
-            type="com.example.marvelapp.ui.base.BaseAdapter" />
-
-        <variable
-            name="item"
-            type="com.example.marvelapp.domain.HomeItem" />
+            type="com.example.marvelapp.ui.home.CharacterAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:background="@color/app_color">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/parentRecycler"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:layout_height="0dp"
             android:adapter="@{childAdapter}"
-            tools:listitem="@layout/item_character" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-
-            android:textColor="@color/white"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23000002" />
+            tools:listitem="@layout/item_character" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
