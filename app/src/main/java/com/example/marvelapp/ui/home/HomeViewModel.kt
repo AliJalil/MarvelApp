@@ -33,19 +33,17 @@ class HomeViewModel @Inject constructor(
                 tempItems.add(tempHomeItem as HomeItem<Any>)
                 itemsList.postValue(tempItems)
             }
+
+            items = charecters.first { it is Resources.Success }.data
+            items?.let {
+                val tempHomeItem = HomeItem(it, HomeItemType.TYPE_PARENT)
+                tempItems.add(tempHomeItem as HomeItem<Any>)
+                itemsList.postValue(tempItems)
+            }
         }
     }
 
     override fun onClickCharacter(character: Character) {
         Log.v("ALI","HELLLLLLO")
     }
-}
-
-
-suspend fun <T> Flow<List<T>>.flattenToList() =
-    flatMapConcat { it.asFlow() }.toList()
-
-
-fun <T> MutableLiveData<T>.notifyObserver() {
-    this.value = this.value
 }
