@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onClickCharacter(character: Character) {
-
+        Log.v("ALI","HELLLLLLO")
     }
 }
 
