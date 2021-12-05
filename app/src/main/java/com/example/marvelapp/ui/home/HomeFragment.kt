@@ -2,16 +2,15 @@ package com.example.marvelapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.example.marvelapp.MarvelApplication
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.marvelapp.databinding.FragmentHomeBinding
-import com.example.marvelapp.domain.HomeItem
 import com.example.marvelapp.ui.base.BaseFragment
-import com.example.marvelapp.ui.base.ParentAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import javax.inject.Named
+import androidx.navigation.fragment.findNavController
+import com.example.marvelapp.R
 
 
 @AndroidEntryPoint
@@ -27,6 +26,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun setup() {
         binding.recyclerHome.adapter = HomeAdapter(mutableListOf(), viewModel)
+
+        binding.searchBtn.setOnClickListener {
+            homeToSearch()
+        }
     }
 
+    private fun homeToSearch() {
+        val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+        val extras =
+            FragmentNavigatorExtras(binding.searchBtn to getString(R.string.home_to_search_transition))
+        findNavController().navigate(action, extras)
+    }
 }
