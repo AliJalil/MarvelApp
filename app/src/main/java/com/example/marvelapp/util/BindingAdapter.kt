@@ -3,10 +3,15 @@ package com.example.marvelapp.util
 import android.view.View
 import com.example.marvelapp.ui.base.BaseAdapter
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.marvelapp.R
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 @BindingAdapter(value = ["app:showOnLoading"])
@@ -62,4 +67,15 @@ fun seImageFromUrl(view: ImageView, url: String?) {
     {
         placeholder(R.drawable.ic_launcher_foreground)
     }
+}
+
+@BindingAdapter(value = ["setFormattedDate"])
+fun setFormattedDate(view: TextView, dateStr: String?) {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss-SSSS", Locale.ENGLISH)
+    view.text = LocalDate.parse(dateStr, formatter).toString()
+}
+
+@BindingAdapter(value = ["isRecyclerEmpty"])
+fun <T> isRecyclerEmpty(view: View, value: List<T>?) {
+    view.isVisible=value?.isEmpty()==true
 }
