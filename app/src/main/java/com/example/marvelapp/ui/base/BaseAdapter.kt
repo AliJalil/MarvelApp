@@ -44,7 +44,7 @@ abstract class BaseAdapter<T>(
         moviesDiffUtil.dispatchUpdatesTo(this)
     }
 
-    fun getItems() = items
+    public fun getItems() = items
 
     override fun getItemCount() = items.size
 
