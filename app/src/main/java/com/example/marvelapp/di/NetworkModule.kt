@@ -20,7 +20,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideMarvelService(okHttpClient: OkHttpClient,gsonConverterFactory: GsonConverterFactory): MarvelApiServices {
+    fun provideMarvelService(
+        okHttpClient: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory
+    ): MarvelApiServices {
         val retrofit = Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .client(okHttpClient)
@@ -58,5 +61,5 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideGSON():GsonConverterFactory = GsonConverterFactory.create()
+    fun provideGSON(): GsonConverterFactory = GsonConverterFactory.create()
 }

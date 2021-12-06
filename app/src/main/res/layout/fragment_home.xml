@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.marvelapp.ui.home.HomeViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
