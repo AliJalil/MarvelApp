@@ -8,12 +8,10 @@ interface CharacterBaseMapper {
     fun mapRemoteToDomain(input: CharacterDto): Character
     fun mapRemoteToEntity(input: CharacterDto): CharacterEntity
     fun mapEntityToDomain(input: CharacterEntity): Character
-    fun mapDomainToEntity(input: Character): CharacterEntity
-
 }
 
-class CharacterMapper : CharacterBaseMapper {
-    override fun mapRemoteToDomain(input: CharacterDto): Character {
+class CharacterDomainMapper : Mapper<CharacterDto,Character> {
+    override fun map(input: CharacterDto): Character {
         return Character(
             name = input.name,
             id = input.id,
@@ -22,8 +20,10 @@ class CharacterMapper : CharacterBaseMapper {
             description = input.description
         )
     }
+}
 
-    override fun mapRemoteToEntity(input: CharacterDto): CharacterEntity {
+class CharacterEntityMapper : Mapper<CharacterDto,CharacterEntity> {
+    override fun map(input: CharacterDto): CharacterEntity {
         return CharacterEntity(
             id = input.id?.toLong() ?: 0L,
             name = input.name ?: "",
@@ -32,8 +32,10 @@ class CharacterMapper : CharacterBaseMapper {
             imageUrl = "${input.thumbnail!!.path}.${input.thumbnail!!.extension}"
         )
     }
+}
 
-    override fun mapEntityToDomain(input: CharacterEntity): Character {
+class CharacterEntityToDomainMapper : Mapper<CharacterEntity,Character> {
+    override fun map(input: CharacterEntity): Character {
         return Character(
             name = input.name,
             id = input.id.toInt(),
@@ -42,16 +44,38 @@ class CharacterMapper : CharacterBaseMapper {
             description = input.description
         )
     }
-
-    override fun mapDomainToEntity(input: Character): CharacterEntity {
-        return CharacterEntity(
-            id = input.id?.toLong() ?: 0L,
-            name = input.name ?: "",
-            description = input.description ?: "",
-            modified = input.modified ?: "",
-            imageUrl = input.imageUrl ?: "",
-        )
-    }
-
 }
+
+
+//class CharacterMapper : CharacterBaseMapper {
+//    override fun mapRemoteToDomain(input: CharacterDto): Character {
+//        return Character(
+//            name = input.name,
+//            id = input.id,
+//            imageUrl = "${input.thumbnail?.path}.${input.thumbnail?.extension}",
+//            modified = input.modified,
+//            description = input.description
+//        )
+//    }
+//
+//    override fun mapRemoteToEntity(input: CharacterDto): CharacterEntity {
+//        return CharacterEntity(
+//            id = input.id?.toLong() ?: 0L,
+//            name = input.name ?: "",
+//            description = input.description ?: "",
+//            modified = input.modified ?: "",
+//            imageUrl = "${input.thumbnail!!.path}.${input.thumbnail!!.extension}"
+//        )
+//    }
+//
+//    override fun mapEntityToDomain(input: CharacterEntity): Character {
+//        return Character(
+//            name = input.name,
+//            id = input.id.toInt(),
+//            imageUrl = input.imageUrl,
+//            modified = input.modified,
+//            description = input.description
+//        )
+//    }
+//}
 
