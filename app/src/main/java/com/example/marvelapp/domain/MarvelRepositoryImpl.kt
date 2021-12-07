@@ -6,15 +6,16 @@ import com.example.marvelapp.util.Resources
 import com.example.marvelapp.util.Resources.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import com.example.marvelapp.domain.models.Character
-import com.example.marvelapp.domain.models.CharacterMapper
 import javax.inject.Inject
 import com.example.marvelapp.data.local.MarvelDatabase
+import com.example.marvelapp.domain.models.*
 
 
 class MarvelRepositoryImpl @Inject constructor(
     private val apiService: MarvelApiServices,
-    private val characterMapper: CharacterMapper,
+    private val characterDomainMapper: CharacterDomainMapper,
+    private val characterEntityMapper: CharacterEntityMapper,
+    private val characterEntityToDomainMapper: CharacterEntityToDomainMapper,
     marvelDatabase: MarvelDatabase
 ) : MarvelRepository {
 
@@ -25,7 +26,7 @@ class MarvelRepositoryImpl @Inject constructor(
             try {
                 val characters =
                     apiService.getCharacters().body()?.items?.results?.map { characterDto ->
-                        characterMapper.mapRemoteToDomain(characterDto)
+                        characterDomainMapper.map(characterDto)
                     }
                 emit(Success(characters))
             } catch (throwable: Throwable) {
@@ -37,7 +38,7 @@ class MarvelRepositoryImpl @Inject constructor(
 
     override suspend fun searchCharacters(characterName: String): List<Character> {
         val dbResult = characterDao.searchCharacters("%${characterName}%")
-            .map { characterMapper.mapEntityToDomain(it) }
+            .map { characterEntityToDomainMapper.map(it) }
         return if (dbResult.isEmpty()) {
             saveSearchCharacters(characterName)
         } else {
@@ -48,13 +49,13 @@ class MarvelRepositoryImpl @Inject constructor(
     override suspend fun saveSearchCharacters(characterName: String): List<Character> {
         val characters = apiService.searchCharacters(characterName)
             .body()?.items?.results?.map { characterDto ->
-                characterMapper.mapRemoteToEntity(characterDto)
+                characterEntityMapper.map(characterDto)
             }
         characters?.let { characterDao.addCharacters(it) }
 
         return characters?.let {
             it.map { characterEntity ->
-                characterMapper.mapEntityToDomain(characterEntity)
+                characterEntityToDomainMapper.map(characterEntity)
             }
         }.orEmpty()
     }
